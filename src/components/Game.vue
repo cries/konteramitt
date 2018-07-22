@@ -1,11 +1,11 @@
 <template>
     <div>
-        <collection
-            class="deck"
-            :collection="deck">
+        <collection :collection="deck">
             <div slot-scope="{ collection }">
                 <shuffle :collection="collection">
-                    <div slot-scope="{ shuffledCollection }">
+                    <div
+                        class="deck"
+                        slot-scope="{ shuffledCollection }">
                         <template v-for="card in shuffledCollection">
                             <card
                                 class="card"
