@@ -1,6 +1,6 @@
 <template>
     <div>
-        <collection :collection="deck">
+        <collection :collection="initalDeck">
             <div slot-scope="{ collection }">
                 <shuffle :collection="collection">
                     <div
@@ -72,6 +72,7 @@ export default {
 
     data () {
         return {
+            initalDeck: [],
             suits: [
                 'hearts',
                 'diamonds',
@@ -126,6 +127,10 @@ export default {
                     return '♣'
             }
         }
+    },
+
+    mounted () {
+        this.initalDeck = this.deck
     }
 }
 </script>
