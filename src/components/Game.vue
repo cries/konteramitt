@@ -6,24 +6,23 @@
                     <div
                         class="deck"
                         slot-scope="{ shuffledCollection }">
-                        <template v-for="card in shuffledCollection">
-                            <card
-                                :key="card.suit + '-' + card.rank"
-                                :suit="card.suit"
-                                :rank="card.rank">
-                                <div
-                                    class="card"
-                                    :class="cardClasses(card)"
-                                    slot-scope="{ suit, rank }">
-                                    <div>
-                                        {{ rank }}
-                                    </div>
-                                    <div>
-                                        {{ getSuitSymbol(card.suit) }}
-                                    </div>
+                        <card
+                            v-for="card in shuffledCollection"
+                            :key="card.suit + '-' + card.rank"
+                            :suit="card.suit"
+                            :rank="card.rank">
+                            <div
+                                class="card"
+                                :class="cardClasses(card)"
+                                slot-scope="{ suit, rank }">
+                                <div>
+                                    {{ rank }}
                                 </div>
-                            </card>
-                        </template>
+                                <div>
+                                    {{ getSuitSymbol(card.suit) }}
+                                </div>
+                            </div>
+                        </card>
                     </div>
                 </shuffle>
             </div>
@@ -124,7 +123,6 @@ export default {
                     return '♠'
                 case 'clubs':
                     return '♣'
-
             }
         }
     }
