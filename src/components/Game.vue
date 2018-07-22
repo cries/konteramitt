@@ -43,9 +43,10 @@
     .card {
         height: 156px;
         width: 100px;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 5px;
         border: 1px solid black;
+        font-size: 3em;
 
         &.red {
             color: red;
