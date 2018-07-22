@@ -4,19 +4,23 @@
             class="deck"
             :collection="deck">
             <div slot-scope="{ collection }">
-                <template v-for="card in deck">
-                    <card
-                        class="card"
-                        :key="card.suit + '-' + card.rank"
-                        :suit="card.suit"
-                        :rank="card.rank">
-                        <div slot-scope="{ suit, rank }">
-                            <div>
-                                <span>{{ rank }} of {{ suit }}</span>
-                            </div>
-                        </div>
-                    </card>
-                </template>
+                <shuffle :collection="collection">
+                    <div slot-scope="{ shuffledCollection }">
+                        <template v-for="card in shuffledCollection">
+                            <card
+                                class="card"
+                                :key="card.suit + '-' + card.rank"
+                                :suit="card.suit"
+                                :rank="card.rank">
+                                <div slot-scope="{ suit, rank }">
+                                    <div>
+                                        <span>{{ rank }} of {{ suit }}</span>
+                                    </div>
+                                </div>
+                            </card>
+                        </template>
+                    </div>
+                </shuffle>
             </div>
         </collection>
     </div>
@@ -38,12 +42,14 @@
 
 <script>
 import Collection from './generic/Collection.js'
+import Shuffle from './generic/Shuffle.js'
 import Card from './generic/Card.js'
 
 export default {
     components: {
         'collection': Collection,
-        'card': Card
+        'card': Card,
+        'shuffle': Shuffle
     },
 
     data () {
