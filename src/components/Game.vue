@@ -1,6 +1,6 @@
 <template>
     <div>
-        <card-container
+        <collection
             class="deck"
             :collection="deck">
             <div slot-scope="{ collection }">
@@ -18,7 +18,7 @@
                     </card>
                 </template>
             </div>
-        </card-container>
+        </collection>
     </div>
 </template>
 
@@ -37,12 +37,12 @@
 </style>
 
 <script>
-import CardContainer from './generic/CardContainer.js'
+import Collection from './generic/Collection.js'
 import Card from './generic/Card.js'
 
 export default {
     components: {
-        'card-container': CardContainer,
+        'collection': Collection,
         'card': Card
     },
 
