@@ -1,13 +1,22 @@
 export default {
-    props: [
-        'suit',
-        'rank'
-    ],
+    props: {
+        suit: {
+            type: String,
+            default: ''
+        },
+
+        rank: {
+            type: String,
+            default: ''
+        }
+    },
 
     render () {
-        return this.$scopedSlots.default({
-            suit: this.suit,
-            rank: this.rank
-        })
+        let vnodes = this.$scopedSlots.default
+            ? this.$scopedSlots.default(this)
+            : this.$slots.default
+        return Array.isArray(vnodes)
+            ? vnodes[0]
+            : vnodes
     }
 }

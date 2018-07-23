@@ -1,33 +1,31 @@
 <template>
-    <div>
-        <collection :collection="initalDeck">
-            <div slot-scope="{ collection }">
-                <shuffle :collection="collection">
-                    <div
-                        class="deck"
-                        slot-scope="{ shuffledCollection }">
-                        <card
-                            v-for="card in shuffledCollection"
-                            :key="card.suit + '-' + card.rank"
-                            :suit="card.suit"
-                            :rank="card.rank">
-                            <div
-                                class="card"
-                                :class="cardClasses(card)"
-                                slot-scope="{ suit, rank }">
-                                <div>
-                                    {{ rank }}
-                                </div>
-                                <div>
-                                    {{ getSuitSymbol(card.suit) }}
-                                </div>
+    <collection :collection="initalDeck">
+        <template slot-scope="{ collection }">
+            <shuffle :collection="collection">
+                <div
+                    class="deck"
+                    slot-scope="{ shuffledCollection }">
+                    <card
+                        v-for="card in shuffledCollection"
+                        :key="card.suit + '-' + card.rank"
+                        :suit="card.suit"
+                        :rank="card.rank">
+                        <div
+                            class="card"
+                            :class="cardClasses(card)"
+                            slot-scope="{ suit, rank }">
+                            <div>
+                                {{ rank }}
                             </div>
-                        </card>
-                    </div>
-                </shuffle>
-            </div>
-        </collection>
-    </div>
+                            <div>
+                                {{ getSuitSymbol(card.suit) }}
+                            </div>
+                        </div>
+                    </card>
+                </div>
+            </shuffle>
+        </template>
+    </collection>
 </template>
 
 <style lang="scss">

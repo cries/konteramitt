@@ -1,10 +1,8 @@
 export default {
-    name: 'Collection',
-
     props: {
-        collection: {
+        deck: {
             type: Array,
-            default: () => []
+            default () => []
         }
     },
 
