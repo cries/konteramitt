@@ -17,6 +17,17 @@ export default {
         }
     },
 
+    computed: {
+        hands () {
+            return [
+                this.hand1,
+                this.hand2,
+                this.hand3,
+                this.hand4
+            ]
+        }
+    },
+
     methods: {
         dealHands () {
             for (let card = 0; card < 3; card++) {

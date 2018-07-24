@@ -37,6 +37,7 @@
         padding: 5px;
         border: 1px solid black;
         font-size: 3em;
+        background-color: white;
 
         &.red {
             color: red;

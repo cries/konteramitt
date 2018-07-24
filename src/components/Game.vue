@@ -6,12 +6,9 @@
                     slot-scope="{ shuffledCollection }">
                     <game-logic :deck="shuffledCollection">
                         <div
-                            slot-scope="{ hand1, hand2, hand3, hand4, dealHands, deck }">
+                            slot-scope="{ dealHands, deck, hands }">
                             <button v-if="deck.length > 0" @click="dealHands()">Deal Hands</button>
-                            <hand :hand="hand1" />
-                            <hand :hand="hand2" />
-                            <hand :hand="hand3" />
-                            <hand :hand="hand4" />
+                            <game-table :tablehands="hands"/>
                         </div>
                     </game-logic>
                 </div>
@@ -28,14 +25,14 @@
 import Collection from './generic/Collection.js'
 import Shuffle from './generic/Shuffle.js'
 import GameLogic from './generic/GameLogic.js'
-import Hand from './Hand.vue'
+import Table from './Table.vue'
 
 export default {
     components: {
         'collection': Collection,
         'shuffle': Shuffle,
         'game-logic': GameLogic,
-        'hand': Hand
+        'game-table': Table
     },
 
     data () {

@@ -4,6 +4,12 @@
     </div>
 </template>
 
+<style lang="scss">
+    .home {
+        height: 100%;
+    }
+</style>
+
 <script>
 import Game from '../components/Game.vue'
 export default {
