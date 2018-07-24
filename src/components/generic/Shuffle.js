@@ -1,7 +1,12 @@
 export default {
-    props: [
-        'collection'
-    ],
+    name: 'Shuffle',
+
+    props: {
+        collection: {
+            type: Array,
+            default: () => []
+        }
+    },
 
     computed: {
         shuffledCollection () {
@@ -14,8 +19,11 @@ export default {
     },
 
     render () {
-        return this.$scopedSlots.default({
-            shuffledCollection: this.shuffledCollection
-        })
+        let vnodes = this.$scopedSlots.default
+            ? this.$scopedSlots.default(this)
+            : this.$slots.default
+        return Array.isArray(vnodes)
+            ? vnodes[0]
+            : vnodes
     }
 }

@@ -1,4 +1,6 @@
 export default {
+    name: 'Card',
+
     props: {
         suit: {
             type: String,
