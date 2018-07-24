@@ -1,71 +1,41 @@
 <template>
     <collection :collection="initalDeck">
-        <template slot-scope="{ collection }">
+        <div slot-scope="{ collection }">
             <shuffle :collection="collection">
                 <div
-                    class="deck"
                     slot-scope="{ shuffledCollection }">
-                    <card
-                        v-for="card in shuffledCollection"
-                        :key="card.suit + '-' + card.rank"
-                        :suit="card.suit"
-                        :rank="card.rank">
+                    <game-logic :deck="shuffledCollection">
                         <div
-                            class="card"
-                            :class="cardClasses(card)"
-                            slot-scope="{ suit, rank }">
-                            <div>
-                                {{ rank }}
-                            </div>
-                            <div>
-                                {{ getSuitSymbol(card.suit) }}
-                            </div>
+                            slot-scope="{ hand1, hand2, hand3, hand4, dealHands, deck }">
+                            <button v-if="deck.length > 0" @click="dealHands()">Deal Hands</button>
+                            <hand :hand="hand1" />
+                            <hand :hand="hand2" />
+                            <hand :hand="hand3" />
+                            <hand :hand="hand4" />
                         </div>
-                    </card>
+                    </game-logic>
                 </div>
             </shuffle>
-        </template>
+        </div>
     </collection>
 </template>
 
 <style lang="scss">
-    .deck {
-        display: flex;
-        flex-flow: wrap row;
 
-        .card {
-            margin: 5px;
-        }
-    }
-
-    .card {
-        height: 156px;
-        width: 100px;
-        border-radius: 5px;
-        padding: 5px;
-        border: 1px solid black;
-        font-size: 3em;
-
-        &.red {
-            color: red;
-        }
-
-        &.black {
-            color: black;
-        }
-    }
 </style>
 
 <script>
 import Collection from './generic/Collection.js'
 import Shuffle from './generic/Shuffle.js'
-import Card from './generic/Card.js'
+import GameLogic from './generic/GameLogic.js'
+import Hand from './Hand.vue'
 
 export default {
     components: {
         'collection': Collection,
-        'card': Card,
-        'shuffle': Shuffle
+        'shuffle': Shuffle,
+        'game-logic': GameLogic,
+        'hand': Hand
     },
 
     data () {
@@ -103,31 +73,7 @@ export default {
         }
     },
 
-    methods: {
-        cardClasses (card) {
-            return {
-                'red': card.suit === 'hearts' ||
-                    card.suit === 'diamonds',
-                'black': card.suit === 'spades' ||
-                    card.suit === 'clubs'
-            }
-        },
-
-        getSuitSymbol (suit) {
-            switch (suit) {
-                case 'hearts':
-                    return '♥'
-                case 'diamonds':
-                    return '♦'
-                case 'spades':
-                    return '♠'
-                case 'clubs':
-                    return '♣'
-            }
-        }
-    },
-
-    mounted () {
+    created () {
         this.initalDeck = this.deck
     }
 }
