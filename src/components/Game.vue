@@ -1,5 +1,5 @@
 <template>
-    <collection :collection="initalDeck">
+    <collection :collection="initaldeck">
         <div slot-scope="{ collection }">
             <shuffle :collection="collection">
                 <div
@@ -7,6 +7,10 @@
                     <game-logic :deck="shuffledCollection">
                         <div
                             slot-scope="{ dealHands, deck, hands }">
+                            <div>
+                                Deck
+                                <hand :hand="deck" />
+                            </div>
                             <button v-if="deck.length > 0" @click="dealHands()">Deal Hands</button>
                             <game-table :tablehands="hands"/>
                         </div>
@@ -22,17 +26,19 @@
 </style>
 
 <script>
-import Collection from './generic/Collection.js'
-import Shuffle from './generic/Shuffle.js'
-import GameLogic from './generic/GameLogic.js'
-import Table from './Table.vue'
+import Collection from './generic/Collection'
+import Shuffle from './generic/Shuffle'
+import GameLogic from './generic/GameLogic'
+import Table from './Table'
+import Hand from './Hand'
 
 export default {
     components: {
         'collection': Collection,
         'shuffle': Shuffle,
         'game-logic': GameLogic,
-        'game-table': Table
+        'game-table': Table,
+        'hand': Hand
     },
 
     data () {
@@ -56,7 +62,7 @@ export default {
     },
 
     computed: {
-        deck () {
+        initaldeck () {
             let deck = []
             this.ranks.forEach((rank) => {
                 this.suits.forEach((suit) => {
@@ -68,10 +74,6 @@ export default {
             })
             return deck
         }
-    },
-
-    created () {
-        this.initalDeck = this.deck
     }
 }
 </script>

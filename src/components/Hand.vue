@@ -1,7 +1,7 @@
 <template>
-    <div class="deck">
+    <div class="hand">
         <card
-            v-for="card in this.hand"
+            v-for="card in hand"
             :key="card.suit + '-' + card.rank"
             :suit="card.suit"
             :rank="card.rank">
@@ -21,9 +21,12 @@
 </template>
 
 <style lang="scss">
-    .deck {
+    .hand {
         display: flex;
         flex-flow: wrap row;
+        border: 1px dotted black;
+        margin: 10px;
+        min-height: 100px;
 
         .card {
             margin: 5px;
